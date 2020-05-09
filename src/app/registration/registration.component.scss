@@ -24,11 +24,6 @@ input {
 }
 
 // Upload button css //------------------
-// .upload-btn-wrapper {
-//     position: relative;
-//     overflow: hidden;
-//     display: inline-block;
-//   }
   
   .btn {
     border: 2px solid gray;
@@ -38,6 +33,10 @@ input {
     border-radius: 8px;
     font-size: 10px;
     font-weight: bold;
+  }
+
+  button:disabled {
+      opacity: 0.1;
   }
   
   .upload-btn-wrapper input[type=file] {
