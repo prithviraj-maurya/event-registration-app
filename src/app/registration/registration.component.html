@@ -1,0 +1,41 @@
+<div class="registration-form">
+    <div clas="conatiner">
+        <form class="reg-form">
+            <mat-form-field class="input-field">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" value="Sushi">
+            </mat-form-field>
+
+            <mat-form-field class="input-field">
+                <mat-label>Mobile</mat-label>
+                <input matInput placeholder="Mobile Number" value="Sushi">
+            </mat-form-field>
+
+            <mat-form-field class="input-field">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" placeholder="Email" value="Sushi">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Registration Type</mat-label>
+                <mat-select matInput (selectionChange)="registrationTypeChanged($event)">
+                    <mat-option *ngFor="let registrationType of registrationTypes" [value]="registrationType">
+                        {{registrationType}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="input-field">
+                <mat-label>Number of Tickets</mat-label>
+                <input matInput type="number" placeholder="Number of tickets"
+                    [disabled]="selectedRegistrationType === 'Self'"
+                    value="{{ selectedRegistrationType === 'Self' ? 1 : 0 }}">
+            </mat-form-field>
+
+            <div class="upload-btn-wrapper">
+                <button class="btn" (click)="uploader.click()">Upload ID Card</button>
+                <input hidden type="file" #uploader (change)="uploadFile($event)" />
+            </div>
+        </form>
+    </div>
+</div>
