@@ -8,20 +8,17 @@
 
             <mat-form-field class="input-field">
                 <mat-label>Mobile</mat-label>
-                <input matInput placeholder="Mobile Number" [pattern]="mobNumberPattern"
-                    value="getFormControlValue('mobile')" formControlName="mobile">
+                <input matInput placeholder="Mobile Number" [pattern]="mobNumberPattern" value="getFormControlValue('mobile')" formControlName="mobile">
             </mat-form-field>
 
             <mat-form-field class="input-field">
                 <mat-label>Email</mat-label>
-                <input matInput type="email" placeholder="Email" value="getFormControlValue('email')"
-                    formControlName="email">
+                <input matInput type="email" placeholder="Email" value="getFormControlValue('email')" formControlName="email">
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Registration Type</mat-label>
-                <mat-select matInput (selectionChange)="registrationTypeChanged($event)"
-                    formControlName="selectedRegistrationType">
+                <mat-select matInput (selectionChange)="registrationTypeChanged($event)" formControlName="selectedRegistrationType">
                     <mat-option *ngFor="let registrationType of registrationTypes" [value]="registrationType">
                         {{registrationType}}
                     </mat-option>
@@ -30,17 +27,17 @@
 
             <mat-form-field class="input-field">
                 <mat-label>Number of Tickets</mat-label>
-                <input matInput type="number" placeholder="Number of tickets"
-                    value="{{ registrationForm.controls.selectedRegistrationType.value === 'Self' ? 1 : 0 }}"
-                    formControlName="numberOfTickets">
+                <input matInput type="number" placeholder="Number of tickets" value="{{ registrationForm.controls.selectedRegistrationType.value === 'Self' ? 1 : 0 }}" formControlName="numberOfTickets">
             </mat-form-field>
 
-            <div class="upload-btn-wrapper">
-                <button class="btn" (click)="uploader.click()"
-                    [disabled]="registrationForm.invalid || registrationForm.untouched">
-                    Upload ID Card
-                </button>
+            <div class="upload-btn-wrapper" *ngIf="!userDetails">
+                <button class="btn" (click)="uploader.click()" [disabled]="registrationForm.invalid || registrationForm.untouched">
+          Upload ID Card
+        </button>
                 <input hidden type="file" #uploader (change)="uploadFile($event)" />
+            </div>
+            <div class="upload-btn-wrapper" *ngIf="userDetails">
+                <button mat-raised-button (click)="openDialog()">Preview</button>
             </div>
         </form>
     </div>

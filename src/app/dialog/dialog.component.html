@@ -1,0 +1,14 @@
+<div *ngIf="data">
+    <h1 mat-dialog-title>{{data.name}}</h1>
+    <div mat-dialog-content>
+        <img class="img-responsive" [src]="data.profilePicUrl" height="300" width="300"><br>
+        <mat-label>Phone: &nbsp;&nbsp;&nbsp;&nbsp;{{ data.mobile }}</mat-label><br>
+        <mat-label>Email: &nbsp;&nbsp;&nbsp;&nbsp;{{ data.email }}</mat-label><br>
+        <mat-label>Registration Type: &nbsp;&nbsp;{{ data.selectedRegistrationType }}</mat-label><br>
+        <mat-label>Number of tickets: &nbsp;&nbsp;{{ data.numberOfTickets }}</mat-label><br>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">No Thanks</button>
+        <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Confirm</button>
+    </div>
+</div>
