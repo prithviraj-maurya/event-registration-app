@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UserDetails } from './models/user.model';
 
@@ -12,10 +12,28 @@ export class UserService {
   getDetailsUrl: '';
   constructor(private http: HttpClient) {}
 
-  getDetails(): Observable<UserDetails> {
-    return this.http
-      .get<UserDetails>(this.getDetailsUrl)
-      .pipe(catchError((err) => this.handleError(err)));
+  getDetails(): Observable<Array<UserDetails>> {
+    // return this.http
+    //   .get<Array<UserDetails>>(this.getDetailsUrl)
+    //   .pipe(catchError((err) => this.handleError(err)));
+    return of([
+      {
+        name: 'Dummy',
+        mobile: '1234',
+        email: 'abc@xyz.com',
+        selectedRegistrationType: 'Self',
+        numberOfTickets: 1,
+        profilePicUrl: '',
+      },
+      {
+        name: 'Dummy2',
+        mobile: '1234',
+        email: 'abc@xyz.com',
+        selectedRegistrationType: 'Self',
+        numberOfTickets: 1,
+        profilePicUrl: '',
+      },
+    ]);
   }
 
   saveDetails(userDetails: UserDetails): Observable<UserDetails> {

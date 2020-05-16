@@ -1,8 +1,11 @@
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container user-data-grid">
+    <div class="card" style="width: 18rem;" *ngFor="let userDetail of users">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title">{{ userDetail.name }}</h2>
+            <p class="card-text">Phone: {{ userDetail.mobile }}</p>
+            <p class="card-text">Email: {{ userDetail.email }}</p>
+            <button mat-raised-button (click)="openUserDetails(userDetail)">Preview</button>
+        </div>
     </div>
-  </div>
+</div>
